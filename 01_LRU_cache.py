@@ -2,6 +2,7 @@ class Node:
     def __init__(self, value):
         self.value = value
         self.next = None
+        self.previous = None
 
 class Queue:
     def __init__(self):
@@ -42,7 +43,7 @@ class LRU_Cache(object):
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent.
         if key in self.cache:
-            return self.cache[key]
+            return self.cache[key].value
         return -1
 
     def set(self, key, value):
@@ -51,7 +52,7 @@ class LRU_Cache(object):
             if self.is_full():
                 print("is full")
             else:
-                self.cache[key] = value
+                self.cache[key] = Node(value)
     
     def is_full(self):
         return len(self.cache) == self.capacity

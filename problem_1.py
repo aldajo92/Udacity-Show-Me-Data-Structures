@@ -4,12 +4,13 @@ class Node:
         self.next = None
         self.previous = None
 
+
 class Queue:
     def __init__(self):
         self.head = None
         self.tail = None
         self.num_elements = 0
-    
+
     def enqueue(self, new_node):
         if self.head is None:
             self.head = new_node
@@ -19,7 +20,7 @@ class Queue:
             self.tail.next = new_node
             self.tail = self.tail.next
         self.num_elements += 1
-    
+
     def dequeue(self):
         if self.is_empty():
             return None
@@ -28,12 +29,13 @@ class Queue:
         self.head.previous = None
         self.num_elements -= 1
         return node
-    
+
     def size(self):
         return self.num_elements
-    
+
     def is_empty(self):
         return self.num_elements == 0
+
 
 class LRU_Cache(object):
     def __init__(self, capacity):
@@ -47,7 +49,7 @@ class LRU_Cache(object):
             self._recently_used_key(key)
             return self.cache[key].value
         return -1
-    
+
     # TODO: Check this
     def _recently_used_key(self, key):
         node = self.cache[key]
@@ -68,9 +70,8 @@ class LRU_Cache(object):
 
         self.queue.enqueue(node)
 
-
     def set(self, key, value):
-        # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item. 
+        # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
         if not (key in self.cache):
             if self.is_full():
                 remove_key = self.queue.dequeue().value
@@ -80,10 +81,10 @@ class LRU_Cache(object):
             new_node = Node(value)
             self.cache[key] = new_node
             self.queue.enqueue(new_node)
-    
+
     def is_full(self):
         return len(self.cache) == self.capacity
-    
+
     def print_queue(self):
         current_node = self.queue.head
         list_values = []
@@ -103,6 +104,7 @@ class LRU_Cache(object):
 
 def test_expression(expression):
     print("pass" if expression else "fail")
+
 
 our_cache = LRU_Cache(5)
 

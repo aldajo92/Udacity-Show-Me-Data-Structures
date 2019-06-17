@@ -23,7 +23,23 @@ def _find_files_recursion(suffix, path):
                 list_found_files = list_found_files + result
         return list_found_files
 
+def test_with_test_dir():
+    result = find_files(".h", "./testdir")
+    print(result)
 
-result = find_files(".h", "./testdir")
+def test_with_py():
+    result = find_files(".py", "./")
+    print(result)
 
-print(result)
+def test_with_md():
+    result = find_files(".md", "./")
+    print(result)
+
+def test_empty():
+    result = find_files(".mp4", "./")
+    print(result)
+
+test_with_test_dir()
+test_with_py()
+test_with_md()
+test_empty()
